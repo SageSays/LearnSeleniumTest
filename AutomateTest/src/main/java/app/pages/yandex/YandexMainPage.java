@@ -1,6 +1,7 @@
 package app.pages.yandex;
 
 import app.web_pages.WebPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -42,11 +43,13 @@ public class YandexMainPage extends WebPage {
 
 
   //---------------Actions----------------//
+  @Step("Нажать накнопку 'Найти'")
   public void clickSearchButton() {
     driver.findElement(searchButton()).click();
   }
 
 
+  @Step("Ввод строки {str}")
   public void inputSearchString(String str) {
     driver.findElement(searchString()).sendKeys(str);
   }
@@ -55,6 +58,7 @@ public class YandexMainPage extends WebPage {
    * Проверка наличия ссылки на карты.
    * @return
    */
+  @Step("Проверка наличия ссылки на 'Карты'")
   public boolean checkMapLink() {
     try {
       driver.findElement(mapLink());

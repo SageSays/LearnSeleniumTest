@@ -1,6 +1,7 @@
 import app.Driver;
 import app.pages.yandex.YandexMainPage;
 import app.pages.yandex.YandexSearchPage;
+import io.qameta.allure.Step;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,12 +22,14 @@ public class YandexTests {
   @Test
   public void checkMapLink() {
     YandexMainPage yandex = new YandexMainPage(driver, DEFAULT_PAGE);
-    Assert.assertFalse(yandex.checkMapLink());
+
+    Assert.assertTrue(yandex.checkMapLink());
 
   }
 
   /**
    * Проверка кнопки "Найти".
+   * Сейчас при корректной работе будет падать - специально
    */
   @Test
   public void testClick() {

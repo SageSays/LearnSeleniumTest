@@ -1,9 +1,12 @@
 package app.pages.yandex;
 
 import app.web_pages.WebPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
+
+import java.util.List;
 
 /**
  * Search page in yandex.
@@ -41,6 +44,7 @@ public class YandexSearchPage extends WebPage {
    * Проверка наличия ссылки в результатах поиска.
    * @return
    */
+  @Step("Проверить наличие первной ссылке")
   public boolean checkFirstLink() {
     try {
       driver.findElement(firstSearchLink());
@@ -57,10 +61,15 @@ public class YandexSearchPage extends WebPage {
    * Проверка список ссылок на странице не пуст.
    * @return
    */
+  @Step("Проверить, что список ссылок не пуст")
   public boolean checkNotEmptyLinkList() {
     try {
-      driver.findElement(linkListBySearch());
-      return true;
+      List linkListBySearch = driver.findElements(linkListBySearch());
+      if(linkListBySearch.size()>0){
+        return true;
+      } else {
+        return false;
+      }
     } catch (ElementNotVisibleException e) {
       return false;
     } catch (Exception e) {
