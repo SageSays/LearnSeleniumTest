@@ -1,28 +1,37 @@
 package app;
 
+import java.io.File;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 
-import java.io.File;
-import java.lang.reflect.Field;
-
+/**
+ * Драйвер.
+ * @author Ivan_Parshin-Borodin
+ */
 public class Driver {
   private WebDriver webDriver;
   private String startPage;
 
-  public Driver(String url){
+  public Driver(String url) {
     startPage = url;
   }
 
 
+  /**
+   * Вовращает ChromeDriver.
+   * @return driver
+   */
   public WebDriver getChromeDriver() {
     initChromeDriver();
     webDriver.get(startPage);
     return  this.webDriver;
   }
 
-  private void initChromeDriver(){
+  /**
+   * Инициирует запуск chrome.
+   */
+  private void initChromeDriver() {
     ChromeDriverService service = new ChromeDriverService.Builder()
         .usingDriverExecutable(new File("src\\main\\java\\app\\source\\chromedriver.exe"))
         .usingAnyFreePort()
